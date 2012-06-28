@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GameOfLife
+﻿namespace GameOfLife
 {
-    class Cell
+    public class Cell
     {
+        public Cell()
+            : this(null)
+        {}
+
+        public Cell(IGrid grid)
+        {
+            Grid = grid;
+        }
+
+        public IGrid Grid { get; private set; }
     }
 }
