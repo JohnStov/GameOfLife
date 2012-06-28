@@ -11,5 +11,13 @@ namespace GameOfLife.Test
             var grid = new Grid();
             Assert.That(grid, Is.Not.Null);
         }
+
+        [Test]
+        public void DefaultGridIsTenByTen()
+        {
+            var grid = new Grid();
+            Assert.That(grid.Width, Is.EqualTo(10));
+            Assert.That(grid.Height, Is.EqualTo(10));
+        }
     }
 }
