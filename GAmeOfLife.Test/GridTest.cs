@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace GameOfLife.Test
@@ -60,6 +61,16 @@ namespace GameOfLife.Test
             for (int x = 0; x < grid.Width; ++x)
                 for (int y = 0; y < grid.Height; ++y)
                     Assert.That(grid.GetCell(x,y), Is.InstanceOf<Cell>());
+        }
+
+        [Test]
+        public void CanGetNeighboursOfCell()
+        {
+            var grid = new Grid();
+
+            var neighbours = grid.GetCellNeighbours(5, 5);
+
+            Assert.That(neighbours.Count(), Is.EqualTo(8));
         }
     }
 }

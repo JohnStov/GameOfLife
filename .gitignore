@@ -6,6 +6,7 @@ obj
 TestResults
 
 _Resharper*
+_NCrunch*
 *.user
 *.suo
 packages/*

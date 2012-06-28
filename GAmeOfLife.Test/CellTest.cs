@@ -1,4 +1,4 @@
-﻿using FakeItEasy;
+﻿using NSubstitute;
 using NUnit.Framework;
 
 namespace GameOfLife.Test
@@ -17,7 +17,7 @@ namespace GameOfLife.Test
         [Test]
         public void CellKnowsItsContainer()
         {
-            var grid = A.Fake<IGrid>();
+            var grid = Substitute.For<IGrid>();
 
             var cell = new Cell(grid);
             Assert.That(cell.Grid, Is.SameAs(grid));

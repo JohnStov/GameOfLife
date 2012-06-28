@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GameOfLife
 {
@@ -31,6 +32,18 @@ namespace GameOfLife
         public Cell GetCell(int x, int y)
         {
             return _cells[x, y];
+        }
+
+        public IEnumerable<Cell> GetCellNeighbours(int x, int y)
+        {
+            for (int xPos = x - 1; xPos <= x + 1; ++xPos)
+                for (int yPos = y - 1; yPos <= y + 1; ++yPos)
+                {
+                    if (xPos >= 0 && xPos < Width 
+                        && yPos >= 0 && yPos < Height 
+                        && (xPos != x || yPos != y))
+                            yield return GetCell(xPos, yPos);
+                }
         }
     }
 }
