@@ -60,7 +60,7 @@ namespace GameOfLife.Test
             var grid = new Grid();
             for (int x = 0; x < grid.Width; ++x)
                 for (int y = 0; y < grid.Height; ++y)
-                    Assert.That(grid.GetCell(x,y), Is.InstanceOf<Cell>());
+                    Assert.That(grid[x,y], Is.InstanceOf<Cell>());
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace GameOfLife.Test
         public void CanGetNeighboursByCell()
         {
             var grid = new Grid();
-            var cell = grid.GetCell(5, 5);
+            var cell = grid[5, 5];
 
             var neighbours = grid.GetCellNeighbours(cell);
 
@@ -105,7 +105,7 @@ namespace GameOfLife.Test
         }
 
         [Test]
-        public void CellNotInGridfHasNoNeighbours()
+        public void CellNotInGridHasNoNeighbours()
         {
             var grid = new Grid();
             var cell = new Cell();
@@ -113,6 +113,26 @@ namespace GameOfLife.Test
             var neighbours = grid.GetCellNeighbours(cell);
 
             Assert.That(neighbours.Count(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CanCreateGridFromArray()
+        {
+            var setup = new[,] { { true, true, true }, { false, false, false }, { true, false, true } };
+
+            var grid = new Grid(setup);
+
+            Assert.That(grid.Width, Is.EqualTo(3));
+            Assert.That(grid.Height, Is.EqualTo(3));
+            Assert.That(grid[0, 0].IsAlive, Is.True);
+            Assert.That(grid[0, 1].IsAlive, Is.True);
+            Assert.That(grid[0, 2].IsAlive, Is.True);
+            Assert.That(grid[1, 0].IsAlive, Is.False);
+            Assert.That(grid[1, 1].IsAlive, Is.False);
+            Assert.That(grid[1, 2].IsAlive, Is.False);
+            Assert.That(grid[2, 0].IsAlive, Is.True);
+            Assert.That(grid[2, 1].IsAlive, Is.False);
+            Assert.That(grid[2, 2].IsAlive, Is.True);
         }
 
     }

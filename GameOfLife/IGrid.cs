@@ -4,6 +4,7 @@ namespace GameOfLife
     {
         int Width { get; }
         int Height { get; }
-        Cell GetCell(int x, int y);
+
+        Cell this[int x, int y] { get; }
     }
 }
