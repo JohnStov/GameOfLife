@@ -72,5 +72,37 @@ namespace GameOfLife.Test
 
             Assert.That(neighbours.Count(), Is.EqualTo(8));
         }
+
+        [Test]
+        public void CornerHas3Neigbours()
+        {
+            var grid = new Grid();
+
+            var neighbours = grid.GetCellNeighbours(0, 0);
+
+            Assert.That(neighbours.Count(), Is.EqualTo(3));
+        }
+
+        [Test]
+        public void EdgeHas5Neigbours()
+        {
+            var grid = new Grid();
+
+            var neighbours = grid.GetCellNeighbours(0, 1);
+
+            Assert.That(neighbours.Count(), Is.EqualTo(5));
+        }
+
+        [Test]
+        public void CanGetNeighboursByCell()
+        {
+            var grid = new Grid();
+            var cell = grid.GetCell(5, 5);
+
+            var neighbours = grid.GetCellNeighbours(cell);
+
+            Assert.That(neighbours.Count(), Is.EqualTo(8));
+        }
+
     }
 }

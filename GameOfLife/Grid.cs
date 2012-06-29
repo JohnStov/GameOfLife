@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace GameOfLife
 {
+    using System.Linq;
+
     public class Grid : IGrid
     {
         private readonly Cell[,] _cells;
@@ -44,6 +46,28 @@ namespace GameOfLife
                         && (xPos != x || yPos != y))
                             yield return GetCell(xPos, yPos);
                 }
+        }
+
+        public IEnumerable<Cell> GetCellNeighbours(Cell cell)
+        {
+            int x;
+            int y;
+
+            if (!TryGetCellLocation(cell, out x, out y))
+                return new Cell[0];
+
+            return GetCellNeighbours(x, y);
+        }
+
+        private bool TryGetCellLocation(Cell cell, out int x, out int y)
+        {
+            for (x = 0; x < _cells.GetLength(0); ++x)
+                for (y = 0; y < _cells.GetLength(1); ++y)
+                    if (cell == _cells[x, y])
+                        return true;
+
+            x = y = 0;
+            return false;
         }
     }
 }
