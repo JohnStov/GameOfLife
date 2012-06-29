@@ -5,6 +5,10 @@ namespace GameOfLife
         int Width { get; }
         int Height { get; }
 
-        Cell this[int x, int y] { get; }
+        ICell this[int x, int y] { get; }
+
+        bool[,] GetState();
+
+        IGrid Generate();
     }
 }

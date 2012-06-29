@@ -135,5 +135,23 @@ namespace GameOfLife.Test
             Assert.That(grid[2, 2].IsAlive, Is.True);
         }
 
+        [Test]
+        public void CanSaveGridToArray()
+        {
+            var setup = new[,] { { true, true, true }, { false, false, false }, { true, false, true } };
+
+            var grid = new Grid(setup);
+            Assert.That(grid.GetState(), Is.EqualTo(setup));
+        }
+
+        [Test]
+        public void CanGenerate()
+        {
+            var grid = new Grid();
+            var nextGen = grid.Generate();
+            
+            Assert.That(nextGen, Is.Not.SameAs(grid));
+        }
+
     }
 }
