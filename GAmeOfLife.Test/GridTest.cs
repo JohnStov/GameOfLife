@@ -104,5 +104,16 @@ namespace GameOfLife.Test
             Assert.That(neighbours.Count(), Is.EqualTo(8));
         }
 
+        [Test]
+        public void CellNotInGridfHasNoNeighbours()
+        {
+            var grid = new Grid();
+            var cell = new Cell();
+
+            var neighbours = grid.GetCellNeighbours(cell);
+
+            Assert.That(neighbours.Count(), Is.EqualTo(0));
+        }
+
     }
 }

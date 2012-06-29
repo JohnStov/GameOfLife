@@ -22,5 +22,20 @@ namespace GameOfLife.Test
             var cell = new Cell(grid);
             Assert.That(cell.Grid, Is.SameAs(grid));
         }
+
+        [Test]
+        public void CellDefaultsDead()
+        {
+            var cell = new Cell();
+            Assert.That(cell.IsAlive, Is.False);
+        }
+
+        [Test]
+        public void CanSetCellAlive()
+        {
+            var cell = new Cell();
+            cell.IsAlive = true;
+            Assert.That(cell.IsAlive, Is.True);
+        }
     }
 }

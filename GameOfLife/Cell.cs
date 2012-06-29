@@ -12,5 +12,7 @@
         }
 
         public IGrid Grid { get; private set; }
+
+        public bool IsAlive { get; set; }
     }
 }
